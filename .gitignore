@@ -1,0 +1,42 @@
+# OSごとの不要ファイル
+.DS_Store
+Thumbs.db
+
+# 環境変数ファイル（セキュリティ上必須）
+.env
+.env.*  # .env.local, .env.production なども
+
+# node_modules (フロントエンド)
+**/node_modules/
+
+# Laravel (バックエンド)
+**/vendor/
+**/storage/
+**/bootstrap/cache/
+
+# Laravel IDE helpers, debugbar, etc.
+.phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
+*.log
+
+# Vite キャッシュ（Laravel + Vite構成なら）
+**/.vite
+
+# ビルドファイル・一時ファイル
+dist/
+build/
+.next/
+out/
+coverage/
+*.log
+npm-debug.log*
+
+# VSCodeなどのエディタ設定（任意）
+.vscode/
+.idea/
+
+# その他
+*.sqlite
+*.bak
+*.tmp
