@@ -4,6 +4,7 @@ import { api } from "../lib/axios";
 import { LoginInput, loginSchema } from "../lib/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import Cookies from "js-cookie"; // ← 追加
 
 export default function LoginForm() {
   const {
@@ -20,7 +21,14 @@ export default function LoginForm() {
     console.log("jfoheq");
     try {
       await api.get("/sanctum/csrf-cookie");
-      const res = await api.post("/login", data);
+
+      const csrfToken = Cookies.get("XSRF-TOKEN"); // ← クッキーから取得
+      // const res = await api.post("/login", data);
+      const res = await api.post("/login", data, {
+        headers: {
+          "X-XSRF-TOKEN": csrfToken ?? "",
+        },
+      });
       console.log("ログイン成功:", res.data);
 
       const userRes = await api.get("/api/user");
