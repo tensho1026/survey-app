@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Link, Route } from "react-router-dom";
 import PollCard from "./components/PollCard";
 import CreatePoll from "./pages/CreatePoll";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
+import RegisterForm from "./pages/Register";
 
 function App() {
   const polls = [
@@ -42,6 +44,11 @@ function App() {
               ログイン
             </button>
           </Link>
+          <Link to='/register'>
+            <button className='bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded'>
+              新規登録
+            </button>
+          </Link>
 
           <Link to='create'>
             <button className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded'>
@@ -60,8 +67,10 @@ function App() {
       </div>
       <Routes>
         {/* ここに今後 /polls/:id の詳細ページコンポーネントを追加 */}
+        <Route path='/' element={<Home />} />
         <Route path='/create' element={<CreatePoll />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<RegisterForm />} />
       </Routes>
     </Router>
   );
